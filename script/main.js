@@ -57,8 +57,8 @@ var map;
 
             
 
-            if (map.getZoom()>20) {
-                map.setZoom(20);
+            if (map.getZoom()>13) {
+                map.setZoom(13);
             };
 
             //console.log(map.getZoom());
