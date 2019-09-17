@@ -61,7 +61,7 @@ var map;
                 map.setZoom(20);
             };
 
-            console.log(map.getZoom());
+            //console.log(map.getZoom());
         }
         
         function initPage() {
