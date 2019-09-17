@@ -55,8 +55,6 @@ var map;
 
             map.fitBounds(bounds);
 
-            
-
             if (map.getZoom()>13) {
                 map.setZoom(13);
             };
