@@ -1,0 +1,69 @@
+{
+    "items":[
+        {
+            "title":"Barnbus", 
+            "description":"Lek med dina barn", 
+            "date":"2019-10-01 11:00:00", 
+            "imagesrc":"https://luftlek.se/wp-content/uploads/2019/02/shutterstock_538256848.jpg", 
+            "locationdesc":"Essity", 
+            "location":[
+                {
+                    "lat": 57.6520352, 
+                    "lng": 13.0202796
+                }
+            ]
+        },
+        {
+            "title":"Drakens teater", 
+            "description":"Lek med draken", 
+            "date":"2019-10-01 11:00:00", 
+            "imagesrc":"https://luftlek.se/wp-content/uploads/2019/02/shutterstock_538256848.jpg", 
+            "locationdesc":"Essity", 
+            "location":[
+                {
+                    "lat": 57.1520352, 
+                    "lng": 13.0202796
+                }
+            ]
+        },
+        {
+            "title":"Loppis", 
+            "description":"Köp leksaker med dina barn", 
+            "date":"2019-10-04 11:00:00", 
+            "imagesrc":"https://luftlek.se/wp-content/uploads/2019/02/shutterstock_538256848.jpg", 
+            "locationdesc":"Essity", 
+            "location":[
+                {
+                    "lat": 57.3520352, 
+                    "lng": 13.0202796
+                }
+            ]
+        },
+        {
+            "title":"Bokläsning", 
+            "description":"Läs för dina barn", 
+            "date":"2019-10-05 12:00:00", 
+            "imagesrc":"https://luftlek.se/wp-content/uploads/2019/02/shutterstock_538256848.jpg", 
+            "locationdesc":"Essity", 
+            "location":[
+                {
+                    "lat": 57.4520352, 
+                    "lng": 12.0202796
+                }
+            ]
+        },
+        {
+            "title":"Barnmys", 
+            "description":"Mys med dina barn", 
+            "date":"2019-10-02 09:00:00", 
+            "imagesrc":"https://luftlek.se/wp-content/uploads/2019/02/shutterstock_538256848.jpg", 
+            "locationdesc":"Essity", 
+            "location":[
+                {
+                    "lat": 57.9520352, 
+                    "lng": 13.0202796
+                }
+            ]
+        }        
+    ]
+}

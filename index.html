@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JM Hitta på saker</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="css/main.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body onload="initPage()">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="#">JM Hitta på saker</a>
+        </div>
+    </div>
+    <div id="main" class="container">
+
+        <div id="searchbox" class="mx-auto">
+            <form name="searchform" action="javascript:searchData(sbox.value)">
+            <input type="search" name="sbox" id="sbox" class="form-control">
+            </form>
+        </div>
+        <div id="resultbox" class="row">
+            
+        </div>
+        <div id="map"></div>
+    </div>
+
+    <script type="text/javascript">
+        var map;
+        var markers = [];
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {zoom: 4, center: {"lat": 57.6520352, "lng": 13.0202796 }});
+        }
+        
+        function searchData(search) {
+            $.getJSON("data/data.json", function( data ) {
+                events = $.grep( $.parseJSON(JSON.stringify(data.items)), function( n, i ) { return n.description.match(new RegExp(search, 'gi')) || n.title.match(new RegExp(search, 'gi')); });
+            })
+            .done(function(data){
+                printData(events);
+            })
+        }
+        
+        function readData() {
+            var events;
+            $.getJSON("data/data.json", function( data ) {
+                events = jQuery.parseJSON(JSON.stringify(data.items));
+            })
+            .done(function(data){
+                printData(events);
+            })
+        }
+
+        function printData(data) {
+            var results = "";
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+            markers = [];
+            
+            $.each(data, function(key, value) {
+                results += "<div class='card'>";
+                results += "<img src='" + value.imagesrc + "' class='card-img-top' alt=''>";
+                results += "<div class='card-body'>";
+                results += "<h5 class='card-title'>" + value.title + "</h5>";
+                results += "<p class='card-text'>" + value.description + "</p>";
+                results += "<p class='card-text'>" + value.date + "</p>";
+                results += "<p class='card-text'>" + value.locationdesc + "</p>";
+                results += "<a href='#' class='btn btn-primary'>Open</a>";
+                results += "</div>";
+                results += "</div>";
+                markers[key] = new google.maps.Marker({position: value.location[0], map: map, label: {text: value.title, color: "#000", fontWeight: "bold"}});
+                //console.log(key);
+            });
+
+            $('#resultbox').html(results);
+
+            var bounds = new google.maps.LatLngBounds();
+            for (var i = 0; i < markers.length; i++) {
+                bounds.extend(markers[i].getPosition());
+            }
+
+            map.fitBounds(bounds);
+
+            
+
+            if (map.getZoom()>20) {
+                map.setZoom(20);
+            };
+
+            console.log(map.getZoom());
+        }
+        
+        function initPage() {
+            readData();
+        }
+    
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJ439dLLYI6bCnP24tddYkKd0hIr-g0Hc&callback=initMap"></script>
+
+
+</body>
+</html>
